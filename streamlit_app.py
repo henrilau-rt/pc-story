@@ -16,10 +16,6 @@ import os
 import streamlit as st
 import streamlit.components.v1 as components
 
-import streamlit as st
-import streamlit.components.v1 as components
-
-
 # 頁面配置
 st.set_page_config(
     page_title="紅藍時空尋根記 - 香港培正小學尋根之旅 RPG",
