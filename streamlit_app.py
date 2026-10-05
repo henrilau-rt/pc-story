@@ -19,55 +19,6 @@ import streamlit.components.v1 as components
 import streamlit as st
 import streamlit.components.v1 as components
 
-# 強制隱藏右下角 Profile Badge 與彈出視窗
-components.html(
-    """
-    <script>
-    function hideBadge() {
-        // 同時搜尋當前視窗與父層視窗
-        const docs = [document];
-        try {
-            if (window.parent && window.parent.document) {
-                docs.push(window.parent.document);
-            }
-        } catch (e) {}
-
-        docs.forEach(doc => {
-            // 隱藏右下角個人資料卡片、頭像按鈕與浮動元素
-            const selectors = [
-                'div[class*="ProfileBadge"]',
-                'div[class*="profileBadge"]',
-                'div[class*="viewerBadge"]',
-                'div[class*="manageApp"]',
-                'div[data-testid="stStatusWidget"]',
-                'a[href*="share.streamlit.io/user"]',
-                'button[aria-label*="profile"]'
-            ];
-            
-            selectors.forEach(selector => {
-                const elements = doc.querySelectorAll(selector);
-                elements.forEach(el => {
-                    el.style.display = 'none';
-                    el.style.visibility = 'hidden';
-                    el.style.opacity = '0';
-                    el.style.pointerEvents = 'none';
-                });
-            });
-        });
-    }
-
-    // 定期檢查以防 Streamlit 動態載入後重新出現
-    hideBadge();
-    const interval = setInterval(hideBadge, 500);
-    setTimeout(() => clearInterval(interval), 10000);
-    </script>
-    """,
-    height=0,
-    width=0,
-)
-
-# test code
-
 
 # 頁面配置
 st.set_page_config(
